@@ -1,14 +1,12 @@
-# StyTr^2 : Image Style Transfer with Transformers（CVPR2022）
-*Authors: [Yingying Deng](https://diyiiyiii.github.io/), Fan Tang, XingjiaPan, Weiming Dong, Chongyang Ma, Changsheng Xu*
+# Sketch_to_drawing
 
-This paper is proposed to achieve unbiased image style transfer based on the transformer model. We can promote the stylization effect compared with state-of-the-art methods.
-This repository is the official implementation of [SyTr^2 : Image Style Transfer with Transformers](https://arxiv.org/abs/2105.14576).
+This project is based on [SyTr^2 : Image Style Transfer with Transformers](https://arxiv.org/abs/2105.14576).
 
 ## Results presentation 
 <p align="center">
 <img src="https://github.com/diyiiyiii/StyTR-2/blob/main/Figure/Unbiased.png" width="90%" height="90%">
 </p>
-Compared with some state-of-the-art algorithms, our method has a strong ability to avoid content leakage and has better feature representation ability.  <br>
+  After normalization of the inputs and modification of the weights of the loss function, replacing the stylized images with sketches presented the result like this.<br>
 
 
 ## Framework
