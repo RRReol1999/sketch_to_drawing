@@ -28,4 +28,6 @@ content dataset is selected uncolored parts from https://www.kaggle.com/datasets
 ```
 !python ./drive/MyDrive/StyTR-2-main/train.py --style_dir ./drive/MyDrive/StyTR-2-main/input/mixsty/twitter --content_dir ./drive/MyDrive/StyTR-2-main/input/content --save_dir ./drive/MyDrive/input/test --batch_size 2
 ```
-
+### To do
+1.  Modify the model to enable no style image input in the test process<br>
+2.  Continue to modify the loss function of style part for stylized images to expand attention to line detail<br>
