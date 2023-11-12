@@ -4,7 +4,7 @@ This project is based on [SyTr^2 : Image Style Transfer with Transformers](https
 
 ## Results presentation 
 <p align="center">
-<img src="https://github.com/RRReol1999/sketch_to_drawing/56400.jpg" width="90%" height="90%">
+<img src="https://github.com/RRReol1999/sketch_to_drawing/blob/main/56400.jpg" width="90%" height="90%">
 </p>
   After normalization of the inputs and modification of the weights of the loss function, replacing the stylized images with sketches presented the result like this.<br>
 
