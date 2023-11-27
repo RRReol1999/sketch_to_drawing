@@ -51,11 +51,13 @@ Please download them and put them into the floder  ./experiments/  <br>
 ```
 python test.py  --content_dir your_contentdir --style_dir your_styledir    --output your_outdir
 ```
-### Training  
+### Training
 Style dataset is selected uncolored parts from https://www.kaggle.com/datasets/ktaebum/anime-sketch-colorization-pair/data  <br>  
 content dataset is selected uncolored parts from https://www.kaggle.com/datasets/chaosinism/anime-sketch-pairs-from-tweets?rvi=1  <br>  
+Pretrained models: [vgg-model](https://drive.google.com/file/d/1BinnwM5AmIcVubr16tPTqxMjUCE8iu5M/view?usp=sharing)
+Please download them and put them into the floder  ./experiments/  <br> 
 ```
-!python ./drive/MyDrive/StyTR-2-main/train.py --style_dir ./drive/MyDrive/StyTR-2-main/input/mixsty/twitter --content_dir ./drive/MyDrive/StyTR-2-main/input/content --save_dir ./drive/MyDrive/input/test --batch_size 2
+!python train.py --style_dir your_styledir --content_dir your_contentdir --save_dir your_savedir --batch_size 8
 ```
 ### To do
 1.  Modify the model to enable no style image input in the test process<br>
