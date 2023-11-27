@@ -54,7 +54,7 @@ python test.py  --content_dir your_contentdir --style_dir your_styledir    --out
 ### Training
 Style dataset is selected uncolored parts from https://www.kaggle.com/datasets/ktaebum/anime-sketch-colorization-pair/data  <br>  
 content dataset is selected uncolored parts from https://www.kaggle.com/datasets/chaosinism/anime-sketch-pairs-from-tweets?rvi=1  <br>  
-Pretrained models: [vgg-model](https://drive.google.com/file/d/1BinnwM5AmIcVubr16tPTqxMjUCE8iu5M/view?usp=sharing)
+Pretrained models: [vgg-model](https://drive.google.com/file/d/1BinnwM5AmIcVubr16tPTqxMjUCE8iu5M/view?usp=sharing)<br> 
 Please download them and put them into the floder  ./experiments/  <br> 
 ```
 !python train.py --style_dir your_styledir --content_dir your_contentdir --save_dir your_savedir --batch_size 8
