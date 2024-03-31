@@ -18,7 +18,7 @@ This project is based on [SyTr^2 : Image Style Transfer with Transformers](https
 * tqdm  <br> 
 
 ### Steps
-If you are using google colab for project deployment, you can refer to the following steps to configure.<br> 
+You can using google colab for project deployment, you can refer to the following steps to configure.<br> 
 ```
 %%bash
 MINICONDA_INSTALLER_SCRIPT=Miniconda3-4.5.4-Linux-x86_64.sh
@@ -62,3 +62,4 @@ Please download them and put them into the floder  ./experiments/  <br>
 ### To do
 1.  Modify the model to enable no style image input in the test process<br>
 2.  Continue to modify the loss function of style part for stylized images to expand attention to line detail<br>
+3.  To achieve that it is not completely based on the original lines.<br>
