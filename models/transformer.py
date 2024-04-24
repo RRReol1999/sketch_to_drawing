@@ -4,11 +4,14 @@ from typing import Optional, List
 import torch
 import torch.nn.functional as F
 from torch import nn, Tensor
-from function import normal,normal_style
+from function import normal, normal_style
 import numpy as np
 import os
+
 device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
 os.environ["CUDA_VISIBLE_DEVICES"] = "2, 3"
+
+
 class Transformer(nn.Module):
 
     def __init__(self, d_model=512, nhead=8, num_encoder_layers=3,
@@ -34,7 +37,7 @@ class Transformer(nn.Module):
         self.d_model = d_model
         self.nhead = nhead
 
-        self.new_ps = nn.Conv2d(512 , 512 , (1,1))
+        self.new_ps = nn.Conv2d(512, 512, (1, 1))
         self.averagepooling = nn.AdaptiveAvgPool2d(18)
 
     def _reset_parameters(self):
@@ -42,35 +45,32 @@ class Transformer(nn.Module):
             if p.dim() > 1:
                 nn.init.xavier_uniform_(p)
 
-    def forward(self, style, mask , content, pos_embed_c, pos_embed_s):
-        
-        
+    def forward(self, style, mask, content, pos_embed_c, pos_embed_s):
+
         # content-aware positional embedding
-        content_pool = self.averagepooling(content)       
+        content_pool = self.averagepooling(content)
         pos_c = self.new_ps(content_pool)
-        pos_embed_c = F.interpolate(pos_c, mode='bilinear',size= style.shape[-2:])
+        pos_embed_c = F.interpolate(pos_c, mode='bilinear', size=style.shape[-2:])
 
-
-        ###flatten NxCxHxW to HWxNxC     
+        ###flatten NxCxHxW to HWxNxC
         style = style.flatten(2).permute(2, 0, 1)
         if pos_embed_s is not None:
             pos_embed_s = pos_embed_s.flatten(2).permute(2, 0, 1)
-      
+
         content = content.flatten(2).permute(2, 0, 1)
         if pos_embed_c is not None:
             pos_embed_c = pos_embed_c.flatten(2).permute(2, 0, 1)
-     
-        
+
         style = self.encoder_s(style, src_key_padding_mask=mask, pos=pos_embed_s)
         content = self.encoder_c(content, src_key_padding_mask=mask, pos=pos_embed_c)
         hs = self.decoder(content, style, memory_key_padding_mask=mask,
                           pos=pos_embed_s, query_pos=pos_embed_c)[0]
-        
+
         ### HWxNxC to NxCxHxW to
-        N, B, C= hs.shape          
+        N, B, C = hs.shape
         H = int(np.sqrt(N))
         hs = hs.permute(1, 2, 0)
-        hs = hs.view(B, C, -1,H)
+        hs = hs.view(B, C, -1, H)
 
         return hs
 
@@ -88,7 +88,7 @@ class TransformerEncoder(nn.Module):
                 src_key_padding_mask: Optional[Tensor] = None,
                 pos: Optional[Tensor] = None):
         output = src
-        
+
         for layer in self.layers:
             output = layer(output, src_mask=mask,
                            src_key_padding_mask=src_key_padding_mask, pos=pos)
@@ -235,15 +235,13 @@ class TransformerDecoderLayer(nn.Module):
                      memory_key_padding_mask: Optional[Tensor] = None,
                      pos: Optional[Tensor] = None,
                      query_pos: Optional[Tensor] = None):
-
-       
         q = self.with_pos_embed(tgt, query_pos)
         k = self.with_pos_embed(memory, pos)
-        v = memory 
- 
+        v = memory
+
         tgt2 = self.self_attn(q, k, v, attn_mask=tgt_mask,
                               key_padding_mask=tgt_key_padding_mask)[0]
-    
+
         tgt = tgt + self.dropout1(tgt2)
         tgt = self.norm1(tgt)
         tgt2 = self.multihead_attn(query=self.with_pos_embed(tgt, query_pos),

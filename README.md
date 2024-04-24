@@ -63,3 +63,7 @@ Please download them and put them into the floder  ./experiments/  <br>
 1.  Modify the model to enable no style image input in the test process<br>
 2.  Continue to modify the loss function of style part for stylized images to expand attention to line detail<br>
 3.  To achieve that it is not completely based on the original lines.<br>
+
+### update 2024/4/25
+1.  A random seed is added to the transform(segmentation) processing so that the image segmentation is always performed at the corresponding position.
+2.  A deeper vgg network (relu 5-1 to relu 5-3) was used for the experiments. (The intention is to make feature recognition more detail orientated, the exact effect of this is to be determined)
