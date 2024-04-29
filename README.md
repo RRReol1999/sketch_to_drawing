@@ -4,9 +4,10 @@ This project is based on [SyTr^2 : Image Style Transfer with Transformers](https
 
 ## Results presentation 
 <p align="center">
-<img src="https://github.com/RRReol1999/sketch_to_drawing/blob/main/56400.jpg" width="90%" height="90%">
+<img src="https://github.com/RRReol1999/sketch_to_drawing/blob/main/23200.jpg" width="90%" height="90%">
+<img src="https://github.com/RRReol1999/sketch_to_drawing/blob/main/23800.jpg" width="90%" height="90%">
 </p>
-  After normalization of the inputs and modification of the weights of the loss function, replacing the stylized images with sketches presented the result like this.<br>
+  After normalization of the inputs and modification of the weights of the loss function, replacing the stylized images with sketches presented the result like this.（Learning Process in 15%）<br>
   This set of images is the result when batch size=2, numbered (1)-(6) from left to right. Where (1) and (2) are style images. (3) and (4) are content images. (5) represents the result of combining (1) and (3), and (6) represents the result of combining (2) and (4).<br>
 
 
